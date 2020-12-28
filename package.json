@@ -12,10 +12,21 @@
     "@chakra-ui/theme-tools": "1.0.0",
     "@emotion/react": "11.1.1",
     "@emotion/styled": "11.0.0",
+    "flat": "^5.0.2",
     "framer-motion": "^2.9.4",
+    "fs-extra": "^9.0.1",
+    "jdown": "^1.0.4",
+    "lodash.flatten": "^4.4.0",
+    "lodash.get": "^4.4.2",
     "next": "latest",
+    "numeral": "^2.0.6",
     "react": "^17.0.1",
-    "react-dom": "^17.0.1"
+    "react-dom": "^17.0.1",
+    "react-helmet": "^6.1.0",
+    "react-intl": "^5.10.9",
+    "react-markdown": "^5.0.3",
+    "recompose": "^0.30.0",
+    "tinytime": "^0.2.6"
   },
   "devDependencies": {
     "@types/node": "^14.6.0",

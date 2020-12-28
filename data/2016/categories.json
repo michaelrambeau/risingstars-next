@@ -1,0 +1,48 @@
+[
+  {
+    "key": "all",
+    "excluded": [
+      "awesome",
+      "you-dont-know-js",
+      "airbnb-style-guide",
+      "front-end-job-interview-questions"
+    ],
+    "count": 10
+  },
+  {
+    "key": "framework",
+    "count": 15
+  },
+  {
+    "key": "nodejs-framework",
+    "count": 10
+  },
+  {
+    "key": "react",
+    "count": 10,
+    "excluded": ["react"]
+  },
+  {
+    "key": "mobile",
+    "count": 3
+  },
+  {
+    "key": "compiler",
+    "count": 10
+  },
+  {
+    "key": "build"
+  },
+  {
+    "key": "test-framework",
+    "count": 5
+  },
+  {
+    "key": "ide",
+    "count": 5
+  },
+  {
+    "key": "ssg",
+    "count": 5
+  }
+]
