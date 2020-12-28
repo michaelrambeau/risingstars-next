@@ -2,20 +2,20 @@ const settings = require("./data/settings.json");
 
 module.exports = {
   async redirects() {
-    // return [];
-    const allYears = settings.map(({ year }) => year);
-    return (yearRedirects = allYears.map((year) => ({
+    const yearRedirects = settings.map(({ year }) => ({
       source: `/${year}`,
       destination: `/${year}/en`,
       permanent: true,
-    })));
-    return [
-      {
-        source: "/",
-        destination: "/2019/en",
-        permanent: true,
-      },
-      ...yearRedirects,
-    ];
+    }));
+
+    const currentYear = settings.find(({ current }) => !!current).year;
+
+    const rootRedirect = {
+      source: "/",
+      destination: `/${currentYear}/en`,
+      permanent: true,
+    };
+
+    return [rootRedirect, ...yearRedirects];
   },
 };

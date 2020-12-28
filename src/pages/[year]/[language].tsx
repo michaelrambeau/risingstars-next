@@ -14,7 +14,6 @@ const siteMetadata = {
   title: `JavaScript Rising Stars`,
   url: "https://risingstars.js.org",
   GA: "UA-44563970-4",
-  currentYear: 2019, // used to show Twitter blurb only if we are on the page for the current year
 };
 
 type CategorySetting = {
@@ -31,6 +30,7 @@ type Props = {
   messages: any;
   translations: any;
   allYears: number[];
+  currentYear: number;
   languages: { code: string; text: string }[];
   categories: CategorySetting[];
 };
@@ -42,6 +42,7 @@ const Root = ({
   messages,
   translations,
   allYears,
+  currentYear,
   languages,
   categories,
 }: Props) => {
@@ -56,7 +57,7 @@ const Root = ({
         translations={translations}
         year={year}
         allYears={allYears}
-        currentYear={siteMetadata.currentYear}
+        currentYear={currentYear}
         categories={categories}
         languages={languages}
       />
@@ -107,16 +108,10 @@ export async function getStaticProps({ params }: Params) {
   const languageCodes =
     (settings as YearSetting[]).find(({ year: y }) => y === year)?.languages ||
     [];
+  const currentYear = settings.find(({ current }) => !!current).year;
+
   const languages = languageCodes.map((code) =>
     allLanguages.find((item) => item.code === code)
-  );
-
-  console.log(
-    "Categories",
-    year,
-    language,
-    categories.length,
-    languages.length
   );
 
   return {
@@ -127,6 +122,7 @@ export async function getStaticProps({ params }: Params) {
       projectsByTag,
       messages,
       translations,
+      currentYear,
       allYears,
       languages,
       categories,
