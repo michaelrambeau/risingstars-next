@@ -17,6 +17,23 @@ const siteMetadata = {
   currentYear: 2019, // used to show Twitter blurb only if we are on the page for the current year
 };
 
+type CategorySetting = {
+  key: string;
+  count?: number;
+  disabled?: boolean;
+};
+
+type Props = {
+  year: number;
+  language: string;
+  entities: any;
+  projectsByTag: any;
+  messages: any;
+  translations: any;
+  allYears: number[];
+  languages: { code: string; text: string }[];
+  categories: CategorySetting[];
+};
 const Root = ({
   year,
   language,
@@ -27,7 +44,7 @@ const Root = ({
   allYears,
   languages,
   categories,
-}) => {
+}: Props) => {
   const fullUrl = `${siteMetadata.url}/${year}/${language}`;
 
   return (
@@ -62,16 +79,19 @@ export function getStaticPaths() {
     //   { params: { year: "2019", language: "en" } },
     //   { params: { year: "2019", language: "ja" } },
     // ],
-    fallback: true,
+    fallback: false,
   };
 }
 type Params = {
   params: {
     year: string;
-    language: "en" | "ja";
+    language: string;
     data: any;
   };
 };
+
+type YearSetting = { year: number; languages: string[] };
+
 export async function getStaticProps({ params }: Params) {
   const { year: yearParam, language } = params;
   const year = parseInt(yearParam, 0);
@@ -84,9 +104,19 @@ export async function getStaticProps({ params }: Params) {
   const messages = await getMessages(year, language);
 
   const allYears = settings.map(({ year: y }) => y);
-  const languageCodes = settings.find(({ year: y }) => y === year).languages;
+  const languageCodes =
+    (settings as YearSetting[]).find(({ year: y }) => y === year)?.languages ||
+    [];
   const languages = languageCodes.map((code) =>
     allLanguages.find((item) => item.code === code)
+  );
+
+  console.log(
+    "Categories",
+    year,
+    language,
+    categories.length,
+    languages.length
   );
 
   return {
@@ -119,6 +149,8 @@ async function getTranslations(year: number, language: string) {
   const i18nData = await jdown(i18nFolderPath, { parseMd: false });
 
   if (!i18nData[year]) throw new Error(`No i18n data for the year ${year}!`);
+  if (!Array.isArray(i18nData[year]))
+    throw new Error(`i18n data for the year ${year} should be an array!`);
 
   const translations = i18nData[year]
     .filter((item) => item.language === language)

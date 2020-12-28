@@ -27,6 +27,7 @@ class Page extends React.Component {
       categories,
       languages,
     } = this.props;
+
     const locale = intl.locale;
     const title = intl.formatMessage({ id: "page.title" });
     const description = intl.formatMessage({ id: "page.description" });

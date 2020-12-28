@@ -2,6 +2,7 @@ const settings = require("./data/settings.json");
 
 module.exports = {
   async redirects() {
+    // return [];
     const allYears = settings.map(({ year }) => year);
     return (yearRedirects = allYears.map((year) => ({
       source: `/${year}`,
