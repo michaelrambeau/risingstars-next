@@ -16,11 +16,12 @@ import "../css/top.css";
 import "../css/translator-section.css";
 
 function MyApp({ Component, pageProps }: AppProps) {
-  return (
-    // <ChakraProvider theme={theme}>
-    <Component {...pageProps} />
-    // </ChakraProvider>
-  );
+  return <Component {...pageProps} />;
+  // return (
+  //   <ChakraProvider theme={theme}>
+  //     <Component {...pageProps} />
+  //   </ChakraProvider>
+  // );
 }
 
 export default MyApp;
