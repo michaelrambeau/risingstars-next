@@ -83,6 +83,7 @@
 .project-chart-stars {
   text-align: center;
   font-family: "Space Mono", monospace;
+  font-weight: 400;
   color: var(--lighter-text-color);
   font-size: var(--small-font);
   position: absolute;

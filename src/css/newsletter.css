@@ -46,7 +46,9 @@
   text-align: center;
   white-space: nowrap;
   font-family: "Space Mono", monospace;
+  font-weight: 400;
   white-space: nowrap;
+  font-size: 1rem;
 }
 .button:hover {
   background: var(--hover-color);
