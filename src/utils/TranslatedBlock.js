@@ -1,12 +1,28 @@
 import React from "react";
+import ReactMarkdown from "react-markdown";
 import get from "lodash.get";
-
-import Markdown from "./Markdown";
 
 const TranslatedBlock = ({ translations, path, entities }) => {
   const markdown =
     get(translations, path) || `No translation for this path: "${path}"`;
-  return <Markdown source={markdown} entities={entities} />;
+
+  const source = processMarkdown(entities, markdown);
+
+  return <ReactMarkdown source={source} />;
 };
+
+function processMarkdown(entities, md) {
+  const processed = md.replace(/{(.+?)}/gi, (match, slug) => {
+    const project = entities[slug];
+    if (!project) {
+      console.log(slug);
+      return `NO slug ${slug}`;
+    }
+    // throw new Error(`Unable to find project whose slug is ${slug}`)
+    const url = project.url || project.repository;
+    return `[${project.name}](${url})`;
+  });
+  return processed;
+}
 
 export default TranslatedBlock;

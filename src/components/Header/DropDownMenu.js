@@ -28,8 +28,7 @@ const DropDownMenu = ({ year, languages, currentLanguage, onChange }) => (
         </select>
       </div>
       <div className="icon is-left">
-        {/* <img src={svg} width="24" height="24" /> */}
-        Globe icon here
+        <img src="/globe.svg" width="24" height="24" />
       </div>
     </div>
   </div>

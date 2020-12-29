@@ -1,7 +1,6 @@
 import React from "react";
 import { FormattedMessage } from "react-intl";
 
-// import Markdown from './Markdown'
 import Social from "./Social";
 import TranslatedBlock from "../utils/TranslatedBlock";
 
@@ -14,9 +13,6 @@ const Conclusion = ({ entities, url, intl, translations }) => (
         </h2>
       </div>
       <div className="markdown-body">
-        {false && (
-          <Markdown source={md[intl.locale].body} entities={entities} />
-        )}
         <TranslatedBlock
           translations={translations}
           path="conclusion"
